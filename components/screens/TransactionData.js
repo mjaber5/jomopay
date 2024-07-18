@@ -6,7 +6,7 @@ export default function TransactionData({ route }) {
   const { transaction } = route.params;
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Transaction Details</Text>
       <View style={styles.detailContainer}>
         <Text style={styles.label}>Message ID:</Text>
@@ -46,28 +46,26 @@ export default function TransactionData({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: appColor.backgroundColor,
     padding: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: appColor.textColor,
     marginBottom: 20,
-    color: appColor.primary,
-    textAlign: 'center',
   },
   detailContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    marginBottom: 15,
+    backgroundColor: appColor.secondBackgroundColor,
+    padding: 10,
+    borderRadius: 8,
   },
   label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: appColor.textColor,
+    fontSize: 18,
+    fontWeight: '600',
+    color: appColor.mainColor,
   },
   value: {
     fontSize: 16,
