@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import appColor from '../../util/app_colors'; 
 import jsonData from '../../util/data.json'; 
@@ -24,8 +24,18 @@ export default function HomeScreen() {
     navigation.navigate('TransactionData', { transaction: card });
   };
 
+  const handlePressNotification = () => {
+    navigation.navigate('NotificationScreen');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity style={styles.notificationButton} onPress={handlePressNotification}>
+        <Image
+          source={require('../../assets/icon/have-notification.png')}
+          style={styles.notificationIcon}
+        />
+      </TouchableOpacity>
       <FlatList
         data={cardsData}
         renderItem={renderCardItem}
@@ -41,6 +51,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: appColor.backgroundColor,
     paddingHorizontal: 20,
+  },
+  notificationButton: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  notificationIcon: {
+    width: 50,
+    height: 50,
+    backgroundColor: appColor.textColor,
+
   },
   cardContainer: {
     paddingVertical: 20,

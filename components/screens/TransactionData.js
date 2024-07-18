@@ -1,9 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity , StatusBar } from 'react-native';
-import appColor from '../../util/app_colors'; // Adjust this path as per your project structure
+import { StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import appColor from '../../util/app_colors';
 
-export default function TransactionData({ route, navigation }) {
+export default function TransactionData({ route }) {
   const { transaction } = route.params;
+  const navigation = useNavigation();
+
+  const handleOpenDispute = () => {
+    navigation.navigate('RequestConfirmation', {
+      transaction: transaction,
+    });
+  };
 
   return (
     <SafeAreaView style={styles.safeContainer}>
@@ -42,7 +50,7 @@ export default function TransactionData({ route, navigation }) {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, styles.declineButton]} onPress={() => { /* Handle reject action */ }}>
+        <TouchableOpacity style={[styles.button, styles.declineButton]} onPress={handleOpenDispute}>
           <Text style={styles.buttonText}>Open dispute</Text>
         </TouchableOpacity>
       </View>
@@ -57,13 +65,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     padding: 20,
-    paddingBottom: 100, 
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: appColor.textColor,
-    marginBottom: 20,
+    paddingBottom: 100,
   },
   detailContainer: {
     marginBottom: 15,
@@ -82,13 +84,13 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: 20,
     backgroundColor: appColor.backgroundColor,
   },
   button: {
-    flex: 1,
     paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 16,
     alignItems: 'center',
     marginHorizontal: 5,
