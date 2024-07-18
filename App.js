@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './components/screens/HomeScreen';
 import TransactionData from './components/screens/TransactionData';
-import appColor from './util/app_colors'; // Adjust this path as per your project structure
+import appColor from './util/app_colors'; 
 
 const Stack = createNativeStackNavigator();
 
@@ -14,9 +14,9 @@ export default function App() {
         initialRouteName="Home"
         screenOptions={{
           headerStyle: {
-            backgroundColor: appColor.backgroundColor, // Header background color
+            backgroundColor: appColor.secondBackgroundColor, 
           },
-          headerTintColor: appColor.textColor, // Header text color
+          headerTintColor: appColor.textColor, 
           headerTitleStyle: {
             fontWeight: 'bold',
           },
