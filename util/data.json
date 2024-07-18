@@ -1,0 +1,113 @@
+[
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX10281012",
+      "TRANS_ID": "FRALJO21AXXX10281012",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO21",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102810169",
+      "TRANS_ID": "FRALJO21AXXX102810169",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO22",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102810331",
+      "TRANS_ID": "FRALJO21AXXX102810331",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO23",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102810493",
+      "TRANS_ID": "FRALJO21AXXX102810493",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO24",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102810654",
+      "TRANS_ID": "FRALJO21AXXX102810654",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO25",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102815708",
+      "TRANS_ID": "FRALJO21AXXX102815708",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO37",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102810822",
+      "TRANS_ID": "FRALJO21AXXX102810822",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO26",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102810982",
+      "TRANS_ID": "FRALJO21AXXX102810982",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO27",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102811139",
+      "TRANS_ID": "FRALJO21AXXX102811139",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO28",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    },
+    {
+      "MSG_TYPE": "pacs.008.001.08",
+      "MESSAGE_ID": "FRALJO21AXXX102811300",
+      "TRANS_ID": "FRALJO21AXXX102811300",
+      "AMOUNT": "55.00",
+      "VALUE_DATE": "2024-07-17",
+      "SENDER_BIC": "FRALJO26",
+      "RECEIVER_BIC": "FRALJO29",
+      "CURR_CODE": "JOD",
+      "RESULT_DESCRIPTION": "Success"
+    }
+  ]
+  
