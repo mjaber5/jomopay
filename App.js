@@ -1,5 +1,3 @@
-App
-
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,6 +9,7 @@ import SuccessRequest from './components/screens/SuccessRequest';
 import NotificationScreen from './components/screens/NotificationScreen';
 import Dispute from './components/screens/Dispute'; // Import the new Dispute screen
 import MainHomeScreen from './components/screens/MineHomeScreen'; // Import MainHomeScreen
+import AccountProblems from './components/screens/AccountProblems'; // Import AccountProblems
 import appColor from './util/app_colors';
 
 const Stack = createNativeStackNavigator();
@@ -73,6 +72,11 @@ export default function App() {
           name="Dispute" 
           component={Dispute} 
           options={{ title: 'Dispute' }} 
+        />
+        <Stack.Screen 
+          name="AccountProblems" // Ensure this name matches
+          component={AccountProblems} 
+          options={{ title: 'Account Problems' }} 
         />
       </Stack.Navigator>
     </NavigationContainer>
