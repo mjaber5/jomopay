@@ -5,6 +5,21 @@ import appColor from '../../util/app_colors';
 const Dispute = ({ route, navigation }) => {
   const { cardData } = route.params;
 
+  const handleReplay = () => {
+    navigation.navigate('ReplayScreen', {
+      replayData: {
+        alias: cardData.alias,
+        beneficiaryName: cardData.beneficiaryName,
+        amount: `${cardData.amount.value} ${cardData.amount.currency}`,
+        type: cardData.type,
+        date: cardData.date,
+        returnAmount: cardData.returnAmount,
+        reason: cardData.reason,
+        subCategory: cardData.subCategory,
+      },
+    });
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.detailsContainer}>
@@ -20,32 +35,26 @@ const Dispute = ({ route, navigation }) => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#DC3545' }]} // Cancel Color
+          style={[styles.button, { backgroundColor: '#DC3545' }]}
           onPress={() => navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Close</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
-          onPress={() => {
-            // Add Attachment functionality
-          }}
+          style={[styles.button, { backgroundColor: '#007BFF' }]}
+          onPress={handleReplay}
         >
           <Text style={styles.buttonText}>Replay</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
-          onPress={() => {
-            // Reply functionality
-          }}
+          style={[styles.button, { backgroundColor: '#007BFF' }]}
+          onPress={() => {}}
         >
           <Text style={styles.buttonText}>Read</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
-          onPress={() => {
-            // Reply functionality
-          }}
+          style={[styles.button, { backgroundColor: '#007BFF' }]}
+          onPress={() => {}}
         >
           <Text style={styles.buttonText}>Assign</Text>
         </TouchableOpacity>
@@ -97,7 +106,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginHorizontal: 5,
-    marginVertical: 5, // Added marginVertical for better spacing
+    marginVertical: 5,
     paddingVertical: 15,
     borderRadius: 8,
     alignItems: 'center',

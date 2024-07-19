@@ -23,7 +23,6 @@ const MainHomeScreen = () => {
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
           onPress={() => {
-            // First Button Action (placeholder)
             console.log('First Button Pressed');
           }}
         >

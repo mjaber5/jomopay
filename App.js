@@ -10,8 +10,9 @@ import RequestConfirmation from './components/screens/RequestConfirmation';
 import SuccessRequest from './components/screens/SuccessRequest';
 import NotificationScreen from './components/screens/NotificationScreen';
 import Dispute from './components/screens/Dispute'; // Import the new Dispute screen
-import MainHomeScreen from './components/screens/MineHomeScreen'; // Import MainHomeScreen
+import MainHomeScreen from './components/screens/MainHomeScreen'; // Import MainHomeScreen
 import appColor from './util/app_colors';
+import ReplayScreen from './components/screens/ReplayScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="MainHome" // Set MainHomeScreen as the initial route
+        initialRouteName="MainHome" 
         screenOptions={({ navigation }) => ({
           headerStyle: {
             backgroundColor: appColor.secondBackgroundColor,
@@ -73,6 +74,11 @@ export default function App() {
           name="Dispute" 
           component={Dispute} 
           options={{ title: 'Dispute' }} 
+        />
+        <Stack.Screen 
+          name="ReplayScreen" 
+          component={ReplayScreen} 
+          options={{ title: 'Replay' }} 
         />
       </Stack.Navigator>
     </NavigationContainer>
