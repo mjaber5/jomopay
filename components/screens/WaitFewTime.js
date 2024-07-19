@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet , ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
 
@@ -16,7 +16,7 @@ const WaitFewTime = () => {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size='large' color={appColor.darkBackgroundColor}/>
+      <ActivityIndicator size="large" color={appColor.darkBackgroundColor} />
       <Text style={styles.text}>Loading...</Text>
     </View>
   );
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: appColor.lightBackgroundColor,
   },
   text: {
-    margin:10,
+    marginTop: 10,
     fontSize: 18,
     color: appColor.textColor,
     textAlign: 'center',

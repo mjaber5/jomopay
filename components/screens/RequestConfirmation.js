@@ -18,18 +18,14 @@ const RequestConfirmation = () => {
 
   useEffect(() => {
     const categoryIndex = categories.indexOf(selectedCategory);
-    if (categoryIndex !== -1) {
-      setSelectedSubCategory(subCategories[categoryIndex] || '');
-    } else {
-      setSelectedSubCategory('');
-    }
+    setSelectedSubCategory(subCategories[categoryIndex] || '');
   }, [selectedCategory]);
 
   const handleAmountChange = (input) => {
     let newAmount = parseFloat(input);
 
     if (isNaN(newAmount) || newAmount < 0) {
-      Alert.alert('Invalid Amount', 'Amount must be greater than or equal 0.');
+      Alert.alert('Invalid Amount', 'Amount must be greater than or equal to 0.');
       newAmount = '';
     } else if (newAmount > parseFloat(transaction.AMOUNT)) {
       Alert.alert('Exceeded Amount', `Amount should not exceed the transaction amount of ${transaction.AMOUNT}.`);
@@ -50,51 +46,38 @@ const RequestConfirmation = () => {
           'Authorization': 'Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4',
         },
         body: JSON.stringify({
-          "reference": new Date().getTime().toString(),
-          "respondent": { "BIC": transaction.RECEIVER_BIC },
-          "disputeCategory": selectedCategory,
-          "subject": selectedSubCategory,
-          "message": "Description of dispute for receiver, example: There was typo in creditor account, please replace it with account 12345678998076",
-          "amount": {
-            "currency": "JOD",
-            "value": parseFloat(amount)
+          reference: new Date().getTime().toString(),
+          respondent: { BIC: transaction.RECEIVER_BIC },
+          disputeCategory: selectedCategory,
+          subject: selectedSubCategory,
+          message: "Description of dispute for receiver, example: There was typo in creditor account, please replace it with account 12345678998076",
+          amount: {
+            currency: "JOD",
+            value: parseFloat(amount),
           },
-          "originalPayment": {
-            "messageId": transaction.MESSAGE_ID,
-            "transactionId": transaction.TRANS_ID,
-            "valueDate": transaction.VALUE_DATE,
-            "orderingInstitution": { "BIC": transaction.SENDER_BIC }
-          }
-        })
+          originalPayment: {
+            messageId: transaction.MESSAGE_ID,
+            transactionId: transaction.TRANS_ID,
+            valueDate: transaction.VALUE_DATE,
+            orderingInstitution: { BIC: transaction.SENDER_BIC },
+          },
+        }),
       });
 
-      const responseText = await response.text();
-      console.log('Raw response text:', responseText);
-
       if (!response.ok) {
+        const responseText = await response.text();
         console.error('Error status code:', response.status);
         console.error('Error status text:', response.statusText);
         console.error('Error response body:', responseText);
         throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
       }
 
-      const responseData = responseText ? JSON.parse(responseText) : {};
-      console.log('Dispute registered successfully:', responseData);
       Alert.alert('Success', 'Dispute registered successfully');
       navigation.navigate('NotificationScreen');
 
     } catch (error) {
-      console.error('Error registering dispute:', error.message);
       Alert.alert('Error', `Failed to register dispute: ${error.message}`);
     }
-  };
-
-  const handleYesButtonPress = () => {
-    navigation.navigate('SuccessRequest');
-  };
-
-  const handleNoButtonPress = () => {
-    navigation.navigate('Home');
   };
 
   return (
@@ -117,25 +100,23 @@ const RequestConfirmation = () => {
         style={styles.picker}
       >
         <Picker.Item label="Select Category" value="" />
-        {categories.map((category, index) => (
-          <Picker.Item key={index} label={category} value={category} />
+        {categories.map((category) => (
+          <Picker.Item key={category} label={category} value={category} />
         ))}
       </Picker>
       <Picker
         selectedValue={selectedSubCategory}
-        onValueChange={(itemValue) => setSelectedSubCategory(itemValue)}
         style={styles.picker}
         enabled={false} // Disable Picker
-
       >
         <Picker.Item label="Select Sub-Category" value="" />
-        {subCategories.map((subCategory, index) => (
-          <Picker.Item key={index} label={subCategory} value={subCategory} />
+        {subCategories.map((subCategory) => (
+          <Picker.Item key={subCategory} label={subCategory} value={subCategory} />
         ))}
       </Picker>
       <TextInput
         style={styles.message}
-        multiline={true}
+        multiline
         placeholder="Enter message here..."
         numberOfLines={4}
       />
@@ -146,10 +127,16 @@ const RequestConfirmation = () => {
         editable={false}
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={registerDispute}>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]}
+          onPress={registerDispute}
+        >
           <Text style={styles.buttonText}>Send</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={handleNoButtonPress}>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]}
+          onPress={() => navigation.navigate('Home')}
+        >
           <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
@@ -178,7 +165,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingHorizontal: 16,
     backgroundColor: appColor.mainColor,
-    color: "black",
+    color: 'black',
   },
   picker: {
     height: 50,

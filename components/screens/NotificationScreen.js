@@ -8,32 +8,33 @@ const NotificationScreen = ({ navigation }) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4"
+    const fetchDisputes = async () => {
+      try {
+        const response = await fetch("http://141.147.32.152:11443/api/dmm/v1.0/disputes", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4"
+          }
+        });
+        const data = await response.json();
+        setDisputes(data.disputes || []);
+      } catch (error) {
+        console.error('Error fetching disputes:', error);
+        setError("Failed to fetch disputes.");
+      } finally {
+        setIsLoading(false);
       }
     };
-    fetch("http://141.147.32.152:11443/api/dmm/v1.0/disputes", requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        setDisputes(data.disputes || []);
-        setIsLoading(false);
-        setError("");
-      })
-      .catch(error => {
-        console.error('Error fetching disputes:', error);
-        setIsLoading(false);
-        setError("Failed to fetch disputes.");
-      });
+
+    fetchDisputes();
   }, []);
 
   const renderCardItem = ({ item }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.card}
       onPress={() => navigation.navigate('Dispute', { cardData: item })}
-      disabled={item.isUploaded} // Disable the card if the dispute is already uploaded
+      disabled={item.isUploaded}
     >
       <Text style={styles.cardTitle}>Category: {item.disputeCategory}</Text>
       <Text style={styles.cardTitle}>Subject: {item.subject}</Text>
@@ -41,10 +42,18 @@ const NotificationScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color={appColor.mainColor} />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator size="large" color={appColor.mainColor} />
+      {error ? (
+        <Text style={styles.errorText}>{error}</Text>
       ) : (
         <FlatList
           data={disputes}
@@ -53,7 +62,6 @@ const NotificationScreen = ({ navigation }) => {
           contentContainerStyle={styles.cardContainer}
         />
       )}
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import appColor from '../../util/app_colors'; 
-import jsonData from '../../util/data.json'; 
+import appColor from '../../util/app_colors';
+import jsonData from '../../util/data.json';
 
-export default function HomeScreen() {
+const HomeScreen = () => {
   const navigation = useNavigation();
   const [cardsData, setCardsData] = useState([]);
 
@@ -12,8 +12,12 @@ export default function HomeScreen() {
     setCardsData(jsonData);
   }, []);
 
+  const handleCardPress = (card) => {
+    navigation.navigate('TransactionData', { transaction: card });
+  };
+
   const renderCardItem = ({ item }) => (
-    <TouchableOpacity style={styles.card} onPress={() => onPressCard(item)}>
+    <TouchableOpacity style={styles.card} onPress={() => handleCardPress(item)}>
       <Text style={styles.cardTitle}>{item.MESSAGE_ID}</Text>
       <Text>Amount: {item.AMOUNT}</Text>
       <Text>Value Date: {item.VALUE_DATE}</Text>
@@ -21,21 +25,17 @@ export default function HomeScreen() {
     </TouchableOpacity>
   );
 
-  const onPressCard = (card) => {
-    navigation.navigate('TransactionData', { transaction: card });
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={cardsData}
         renderItem={renderCardItem}
-        keyExtractor={(item) => item.MESSAGE_ID} 
+        keyExtractor={(item) => item.MESSAGE_ID}
         contentContainerStyle={styles.cardContainer}
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -63,3 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default HomeScreen;

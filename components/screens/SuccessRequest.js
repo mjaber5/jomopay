@@ -16,12 +16,15 @@ const SuccessRequest = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>Request to return payment</Text>
-      <Image source={require('../../assets/images/Confirm.png')} style={styles.image} />
-      <Text style={styles.bodyText}>Your request was successfully submitted</Text>
-      <Text style={styles.bodyText}>Dispute reference : </Text>
-      <Text style={styles.bodyText}>*******</Text>
-      <Text style={styles.bodyText}>Expected outcome from dispute</Text>
+      <Text style={styles.title}>Request to Return Payment</Text>
+      <Image
+        source={require('../../assets/images/Confirm.png')}
+        style={styles.image}
+      />
+      <Text style={styles.message}>Your request was successfully submitted</Text>
+      <Text style={styles.message}>Dispute reference:</Text>
+      <Text style={styles.message}>*******</Text>
+      <Text style={styles.message}>Expected outcome from dispute</Text>
     </View>
   );
 };
@@ -32,23 +35,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: appColor.lightBackgroundColor,
+    padding: 20, // Added padding to ensure content is not too close to the edges
   },
-  titleText: {
+  title: {
     fontSize: 32,
     color: appColor.darkTextColor,
     textAlign: 'center',
-    margin: 10,
+    marginBottom: 20, // Added marginBottom to separate from image
   },
-  bodyText: {
+  message: {
     fontSize: 24,
-    margin: 8,
+    marginVertical: 8, // Simplified margin for vertical spacing
     color: 'grey',
     textAlign: 'center',
   },
   image: {
     height: 200,
     width: 200,
-    margin: 25,
+    marginVertical: 25, // Used marginVertical for consistency
   },
 });
 

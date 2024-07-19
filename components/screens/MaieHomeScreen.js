@@ -6,12 +6,8 @@ import appColor from '../../util/app_colors';
 const MainHomeScreen = () => {
   const navigation = useNavigation();
 
-  const handleGoToHomeScreen = () => {
-    navigation.navigate('Home');
-  };
-
-  const handleGoToAccountProblems = () => {
-    navigation.navigate('AccountProblems');
+  const navigateToScreen = (screenName) => {
+    navigation.navigate(screenName);
   };
 
   return (
@@ -19,14 +15,14 @@ const MainHomeScreen = () => {
       <Text style={styles.title}>Welcome! Please choose what you want to do</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#28A745' }]} // Success Color
-          onPress={handleGoToHomeScreen}
+          style={[styles.button, styles.financialButton]}
+          onPress={() => navigateToScreen('Home')}
         >
           <Text style={styles.buttonText}>Financial Problems</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
-          onPress={handleGoToAccountProblems}
+          style={[styles.button, styles.accountButton]}
+          onPress={() => navigateToScreen('AccountProblems')}
         >
           <Text style={styles.buttonText}>Account Problems</Text>
         </TouchableOpacity>
@@ -64,6 +60,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  financialButton: {
+    backgroundColor: '#28A745', // Success Color
+  },
+  accountButton: {
+    backgroundColor: '#007BFF', // Primary Color
   },
 });
 

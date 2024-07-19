@@ -3,15 +3,12 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity } fr
 import { useNavigation } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
 
-export default function TransactionData({ route }) {
+const TransactionData = ({ route }) => {
   const { transaction } = route.params;
   const navigation = useNavigation();
 
   // Convert transaction date to Date object
-  const getTransactionDate = (dateString) => {
-    // Assuming dateString format is 'YYYY-MM-DD' (ISO format)
-    return new Date(dateString);
-  };
+  const getTransactionDate = (dateString) => new Date(dateString);
 
   const transactionDate = getTransactionDate(transaction.VALUE_DATE);
   const currentDate = new Date();
@@ -25,35 +22,25 @@ export default function TransactionData({ route }) {
 
   const handleOpenDispute = () => {
     if (!isButtonDisabled) {
-      navigation.navigate('RequestConfirmation', {
-        transaction: transaction,
-      });
+      navigation.navigate('RequestConfirmation', { transaction });
     }
   };
+
+  const renderDetail = (label, value) => (
+    <View style={styles.detailContainer}>
+      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.value}>{value}</Text>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.safeContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Amount</Text>
-          <Text style={styles.value}>{transaction.AMOUNT}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Value Date</Text>
-          <Text style={styles.value}>{transaction.VALUE_DATE}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Sender BIC</Text>
-          <Text style={styles.value}>{transaction.SENDER_BIC}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Receiver BIC</Text>
-          <Text style={styles.value}>{transaction.RECEIVER_BIC}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Currency Code</Text>
-          <Text style={styles.value}>{transaction.CURR_CODE}</Text>
-        </View>
+        {renderDetail('Amount', transaction.AMOUNT)}
+        {renderDetail('Value Date', transaction.VALUE_DATE)}
+        {renderDetail('Sender BIC', transaction.SENDER_BIC)}
+        {renderDetail('Receiver BIC', transaction.RECEIVER_BIC)}
+        {renderDetail('Currency Code', transaction.CURR_CODE)}
       </ScrollView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -66,7 +53,7 @@ export default function TransactionData({ route }) {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -120,3 +107,5 @@ const styles = StyleSheet.create({
     color: '#888', // Light gray color for disabled text
   },
 });
+
+export default TransactionData;
