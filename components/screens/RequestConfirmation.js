@@ -4,7 +4,6 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
 
-
 const RequestConfirmation = () => {
   const navigation = useNavigation();
   const route = useRoute();
@@ -13,9 +12,6 @@ const RequestConfirmation = () => {
   const [amount, setAmount] = useState(transaction.AMOUNT.toString());
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
-
-  
-
 
   const categories = ['TECH', 'WRBN', 'APNM'];
   const subCategories = ['ACNS', 'MSPY', 'APMM'];
@@ -42,7 +38,7 @@ const RequestConfirmation = () => {
         headers: {
           'Content-Type': 'application/json',
           'Charset': 'UTF-8',
-          "Authorization": "Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4",
+          'Authorization': 'Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4',
         },
         body: JSON.stringify({
           "reference": new Date().getTime().toString(),
@@ -62,29 +58,27 @@ const RequestConfirmation = () => {
           }
         })
       });
-  
+
       const responseText = await response.text();
       console.log('Raw response text:', responseText);
-  
+
       if (!response.ok) {
         console.error('Error status code:', response.status);
         console.error('Error status text:', response.statusText);
         console.error('Error response body:', responseText);
         throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
       }
-  
+
       const responseData = responseText ? JSON.parse(responseText) : {};
       console.log('Dispute registered successfully:', responseData);
       Alert.alert('Success', 'Dispute registered successfully');
       navigation.navigate('NotificationScreen');
-  
+
     } catch (error) {
       console.error('Error registering dispute:', error.message);
       Alert.alert('Error', `Failed to register dispute: ${error.message}`);
     }
   };
-  
-
 
   const handleYesButtonPress = () => {
     navigation.navigate('WaitFewTime');
