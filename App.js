@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon library
 import HomeScreen from './components/screens/HomeScreen';
 import TransactionData from './components/screens/TransactionData';
 import RequestConfirmation from './components/screens/RequestConfirmation';
@@ -37,11 +37,11 @@ export default function App() {
         })}
       >
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
-        <Stack.Screen name="TransactionData" component={TransactionData} options={{ title: 'Transaction Data' }} />
-        <Stack.Screen name="RequestConfirmation" component={RequestConfirmation} options={{ title: 'Request Confirmation' }} />
+        <Stack.Screen name="TransactionData" component={TransactionData} options={{ title: 'Transaction info' }} />
+        <Stack.Screen name="RequestConfirmation" component={RequestConfirmation} options={{ title: 'Dispute info' }} />
         <Stack.Screen name="SuccessRequest" component={SuccessRequest} options={{ title: 'Success' }} />
         <Stack.Screen name="NotificationScreen" component={NotificationScreen} options={{ title: 'Notifications' }} />
-        <Stack.Screen name="WaitFewTime" component={WaitFewTime} options={{ title: 'Please Wait' }} />
+        <Stack.Screen name="WaitFewTime" component={WaitFewTime} options={{ title: 'Wait' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

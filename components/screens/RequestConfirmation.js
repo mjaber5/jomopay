@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
+import HomeScreen from './HomeScreen';
 
 const RequestConfirmation = () => {
   const navigation = useNavigation();
@@ -36,7 +37,7 @@ const RequestConfirmation = () => {
   };
 
   const handleNoButtonPress = () => {
-    navigation.navigate('UnSuccessRequest');
+    navigation.navigate('Home');
   };
 
   return (

@@ -9,7 +9,7 @@ const WaitFewTime = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('SuccessRequest');
-    }, 300000); 
+    }, 2000); 
 
     return () => clearTimeout(timer);
   }, [navigation]);

@@ -9,7 +9,7 @@ const SuccessRequest = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('Home');
-    }, 30000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [navigation]);
