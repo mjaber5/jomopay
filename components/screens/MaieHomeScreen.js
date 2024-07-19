@@ -16,7 +16,7 @@ const MainHomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome, please choose what you want to do</Text>
+      <Text style={styles.title}>Welcome! Please choose what you want to do</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#28A745' }]} // Success Color
@@ -26,9 +26,7 @@ const MainHomeScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
-          onPress={() => {
-            console.log('First Button Pressed');
-          }}
+          onPress={handleGoToAccountProblems}
         >
           <Text style={styles.buttonText}>Account Problems</Text>
         </TouchableOpacity>

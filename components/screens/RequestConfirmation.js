@@ -125,6 +125,8 @@ const RequestConfirmation = () => {
         selectedValue={selectedSubCategory}
         onValueChange={(itemValue) => setSelectedSubCategory(itemValue)}
         style={styles.picker}
+        enabled={false} // Disable Picker
+
       >
         <Picker.Item label="Select Sub-Category" value="" />
         {subCategories.map((subCategory, index) => (

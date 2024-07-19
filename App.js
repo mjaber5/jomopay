@@ -1,5 +1,3 @@
-App
-
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,18 +7,22 @@ import TransactionData from './components/screens/TransactionData';
 import RequestConfirmation from './components/screens/RequestConfirmation';
 import SuccessRequest from './components/screens/SuccessRequest';
 import NotificationScreen from './components/screens/NotificationScreen';
-import Dispute from './components/screens/Dispute'; // Import the new Dispute screen
-import MainHomeScreen from './components/screens/MainHomeScreen'; // Import MainHomeScreen
+import Dispute from './components/screens/Dispute'; // Import the Dispute screen
+import MainHomeScreen from './components/screens/MaieHomeScreen'; // Corrected import path
 import appColor from './util/app_colors';
 import ReplayScreen from './components/screens/ReplayScreen';
-import ReturnPayment from './components/screens/ReturnPayment'
+import ReturnPayment from './components/screens/ReturnPayment';
+import ReadScreen from './components/screens/ReadScreen'; // Import ReadScreen
+import AssignScreen from './components/screens/AssignScreen'; // Import AssignScreen
+import AccountProblems from './components/screens/AccountProblems'; // Import AccountProblems
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="MainHome" 
+        initialRouteName="MainHome"
         screenOptions={({ navigation }) => ({
           headerStyle: {
             backgroundColor: appColor.secondBackgroundColor,
@@ -83,7 +85,22 @@ export default function App() {
         <Stack.Screen 
           name="ReturnPayment" 
           component={ReturnPayment} 
-          options={{ title: 'Return Payment'}} 
+          options={{ title: 'Return Payment' }} 
+        />
+        <Stack.Screen 
+          name="ReadScreen" 
+          component={ReadScreen} 
+          options={{ title: 'Read' }} 
+        />
+        <Stack.Screen 
+          name="AssignScreen" 
+          component={AssignScreen} 
+          options={{ title: 'Assign' }} 
+        />
+        <Stack.Screen 
+          name="AccountProblems" 
+          component={AccountProblems} 
+          options={{ title: 'Account Problems' }} 
         />
       </Stack.Navigator>
     </NavigationContainer>

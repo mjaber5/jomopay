@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import appColor from '../../util/app_colors';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const Dispute = () => {
   const route = useRoute();
   const navigation = useNavigation();
 
-  // Destructure cardData and transaction from route.params with default empty objects
-  const { cardData = {}} = route.params || {};
+  // Destructure cardData from route.params with default empty object
+  const { cardData = {} } = route.params || {};
 
   // Ensure VALUE_DATE is defined in cardData
   const valueDate = cardData.valueDate || 'N/A';
-console.log(cardData);
-  // Set initial amount state, default to empty string if transaction.AMOUNT is undefined
 
+  // Handle button presses for navigating to different screens
   const handleReplay = () => {
     navigation.navigate('ReplayScreen', {
       replayData: {
@@ -29,7 +28,19 @@ console.log(cardData);
       },
     });
   };
-console.log(route);
+
+  const handleRead = () => {
+    navigation.navigate('ReadScreen', {
+      cardData: cardData, // Pass cardData if needed on the ReadScreen
+    });
+  };
+
+  const handleAssign = () => {
+    navigation.navigate('AssignScreen', {
+      cardData: cardData, // Pass cardData if needed on the AssignScreen
+    });
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.detailsContainer}>
@@ -60,13 +71,13 @@ console.log(route);
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]}
-          onPress={() => {}}
+          onPress={handleRead}
         >
           <Text style={styles.buttonText}>Read</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]}
-          onPress={() => {}}
+          onPress={handleAssign}
         >
           <Text style={styles.buttonText}>Assign</Text>
         </TouchableOpacity>
