@@ -50,7 +50,7 @@ export default function TransactionData({ route }) {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, styles.declineButton]} onPress={handleOpenDispute}>
+        <TouchableOpacity style={[styles.button, styles.openDisputeButton]} onPress={handleOpenDispute}>
           <Text style={styles.buttonText}>Open dispute</Text>
         </TouchableOpacity>
       </View>
@@ -61,7 +61,7 @@ export default function TransactionData({ route }) {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: appColor.backgroundColor,
+    backgroundColor: appColor.lightBackgroundColor,
   },
   scrollViewContent: {
     padding: 20,
@@ -76,17 +76,17 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontWeight: '600',
-    color: appColor.mainColor,
+    color: appColor.lightTextColor,
   },
   value: {
     fontSize: 16,
-    color: appColor.textColor,
+    color: appColor.lightTextColor,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: appColor.backgroundColor,
+    backgroundColor: appColor.lightBackgroundColor,
   },
   button: {
     paddingVertical: 10,
@@ -95,11 +95,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 5,
   },
-  declineButton: {
-    backgroundColor: appColor.mainColor,
+  openDisputeButton: {
+    backgroundColor: appColor.secondBackgroundColor,
   },
   buttonText: {
-    color: appColor.backgroundColor,
+    color: appColor.lightTextColor,
     fontSize: 16,
     fontWeight: 'bold',
   },

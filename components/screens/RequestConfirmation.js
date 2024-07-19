@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
@@ -9,14 +9,27 @@ const RequestConfirmation = () => {
   const route = useRoute();
   const { transaction } = route.params;
 
-  const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
-  const [date] = useState(new Date());
+  const [amount, setAmount] = useState(transaction.AMOUNT.toString());
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
 
   const categories = ['Technical Issues TECH', 'Wrong Beneficiary WRBN', 'Alias/Phone Number Misassignment'];
   const subCategories = ['Account was not credited', 'Misdirected payments', 'Alias mismatch with customer'];
+
+  const handleAmountChange = (input) => {
+    let newAmount = parseFloat(input);
+
+    if (isNaN(newAmount) || newAmount < 0) {
+      Alert.alert('Invalid Amount', 'Amount must be greater than or equal 0.');
+      newAmount = '';
+    } else if (newAmount > parseFloat(transaction.AMOUNT)) {
+      Alert.alert('Exceeded Amount', `Amount should not exceed the transaction amount of ${transaction.AMOUNT}.`);
+      newAmount = transaction.AMOUNT.toString();
+    } else {
+      newAmount = input;
+    }
+    setAmount(newAmount);
+  };
 
   const handleYesButtonPress = () => {
     navigation.navigate('WaitFewTime');
@@ -31,13 +44,12 @@ const RequestConfirmation = () => {
       <TextInput
         style={styles.input}
         value={transaction.SENDER_BIC}
-        onChangeText={setName}
         editable={false}
       />
       <TextInput
         style={styles.input}
         value={amount}
-        onChangeText={setAmount}
+        onChangeText={handleAmountChange}
         placeholder="Enter amount"
         keyboardType="numeric"
       />
@@ -65,7 +77,7 @@ const RequestConfirmation = () => {
       <Text style={styles.label}>Date:</Text>
       <TextInput
         style={styles.input}
-        value={date.toLocaleDateString()}
+        value={new Date().toLocaleDateString()}
         editable={false}
       />
       <View style={styles.buttonContainer}>
@@ -85,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
-    backgroundColor: appColor.backgroundColor,
+    backgroundColor: appColor.lightBackgroundColor,
   },
   label: {
     fontSize: 18,
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: '100%',
     marginBottom: 16,
-    color: appColor.textColor,
+    color: appColor.darkTextColor,
     backgroundColor: appColor.mainColor,
     borderRadius: 8,
   },
@@ -124,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: appColor.textColor,
+    color: appColor.lightTextColor,
     fontSize: 18,
     fontWeight: 'bold',
   },

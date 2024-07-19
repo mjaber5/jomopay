@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet , ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
 
@@ -9,14 +9,15 @@ const WaitFewTime = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('SuccessRequest');
-    }, 3000); // 30 seconds
+    }, 300000); 
 
-    return () => clearTimeout(timer); // Clean up the timer if the component unmounts
+    return () => clearTimeout(timer);
   }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Please wait a few moments...</Text>
+      <ActivityIndicator size='large' color={appColor.darkBackgroundColor}/>
+      <Text style={styles.text}>Loading...</Text>
     </View>
   );
 };
@@ -26,10 +27,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: appColor.backgroundColor,
+    backgroundColor: appColor.lightBackgroundColor,
   },
   text: {
-    fontSize: 24,
+    margin:10,
+    fontSize: 18,
     color: appColor.textColor,
     textAlign: 'center',
   },

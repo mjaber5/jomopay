@@ -24,18 +24,8 @@ export default function HomeScreen() {
     navigation.navigate('TransactionData', { transaction: card });
   };
 
-  const handlePressNotification = () => {
-    navigation.navigate('NotificationScreen');
-  };
-
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.notificationButton} onPress={handlePressNotification}>
-        <Image
-          source={require('../../assets/icon/have-notification.png')}
-          style={styles.notificationIcon}
-        />
-      </TouchableOpacity>
       <FlatList
         data={cardsData}
         renderItem={renderCardItem}
@@ -49,18 +39,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: appColor.backgroundColor,
+    backgroundColor: appColor.lightBackgroundColor,
     paddingHorizontal: 20,
-  },
-  notificationButton: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  notificationIcon: {
-    width: 50,
-    height: 50,
-    backgroundColor: appColor.textColor,
-
   },
   cardContainer: {
     paddingVertical: 20,

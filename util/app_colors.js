@@ -1,7 +1,9 @@
 const appColor = {
-  backgroundColor: '#171717',
+  darkBackgroundColor: '#171717',
+  lightBackgroundColor: '#f5f5f5',
   secondBackgroundColor: '#31304D',
-  textColor: '#FFFFFF',
+  darkTextColor: '#171717',
+  lightTextColor: '#FFFFFF',
   mainColor: '#F0ECE5',
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './components/screens/HomeScreen';
 import TransactionData from './components/screens/TransactionData';
 import RequestConfirmation from './components/screens/RequestConfirmation';
@@ -16,15 +17,24 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Home"
-        screenOptions={{
+        screenOptions={({ navigation }) => ({
           headerStyle: {
             backgroundColor: appColor.secondBackgroundColor,
           },
-          headerTintColor: appColor.textColor,
+          headerTintColor: appColor.lightTextColor,
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
+          headerRight: () => (
+            <Icon
+              name="notifications-outline"
+              size={25}
+              color={appColor.lightTextColor}
+              style={{ marginRight: 15 }}
+              onPress={() => navigation.navigate('NotificationScreen')}
+            />
+          ),
+        })}
       >
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
         <Stack.Screen name="TransactionData" component={TransactionData} options={{ title: 'Transaction Data' }} />
