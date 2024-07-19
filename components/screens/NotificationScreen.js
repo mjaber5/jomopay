@@ -30,17 +30,22 @@ const NotificationScreen = ({ navigation }) => {
     fetchDisputes();
   }, []);
 
-  const renderCardItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => navigation.navigate('Dispute', { cardData: item })}
-      disabled={item.isUploaded}
-    >
-      <Text style={styles.cardTitle}>Category: {item.disputeCategory}</Text>
-      <Text style={styles.cardTitle}>Subject: {item.subject}</Text>
-      <Text style={styles.cardTitle}>Amount: {item.amount.value} {item.amount.currency}</Text>
-    </TouchableOpacity>
-  );
+  const renderCardItem = ({ item }) => {
+    const amountValue = item.amount?.value || 'N/A';
+    const amountCurrency = item.amount?.currency || '';
+
+    return (
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => navigation.navigate('Dispute', { cardData: item })}
+        disabled={item.isUploaded}
+      >
+        <Text style={styles.cardTitle}>Category: {item.disputeCategory || 'N/A'}</Text>
+        <Text style={styles.cardTitle}>Subject: {item.subject || 'N/A'}</Text>
+        <Text style={styles.cardTitle}>Amount: {amountValue} {amountCurrency}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   if (isLoading) {
     return (
