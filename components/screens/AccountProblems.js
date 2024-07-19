@@ -4,10 +4,19 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
 
-const RequestConfirmation = () => {
+const AccountProblems = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { transaction } = route.params;
+  
+  // Use optional chaining and provide default values
+  const transaction = route.params?.transaction || {
+    AMOUNT: '0',
+    RECEIVER_BIC: '',
+    SENDER_BIC: '',
+    MESSAGE_ID: '',
+    TRANS_ID: '',
+    VALUE_DATE: '',
+  };
 
   const [amount, setAmount] = useState(transaction.AMOUNT.toString());
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -16,12 +25,11 @@ const RequestConfirmation = () => {
   const categories = ['TECH', 'WRBN', 'APNM'];
   const subCategories = ['ACNS', 'MSPY', 'APMM'];
 
+  // Automatically select the corresponding sub-category based on the selected category
   useEffect(() => {
     const categoryIndex = categories.indexOf(selectedCategory);
     if (categoryIndex !== -1) {
       setSelectedSubCategory(subCategories[categoryIndex] || '');
-    } else {
-      setSelectedSubCategory('');
     }
   }, [selectedCategory]);
 
@@ -29,7 +37,7 @@ const RequestConfirmation = () => {
     let newAmount = parseFloat(input);
 
     if (isNaN(newAmount) || newAmount < 0) {
-      Alert.alert('Invalid Amount', 'Amount must be greater than or equal 0.');
+      Alert.alert('Invalid Amount', 'Amount must be greater than or equal to 0.');
       newAmount = '';
     } else if (newAmount > parseFloat(transaction.AMOUNT)) {
       Alert.alert('Exceeded Amount', `Amount should not exceed the transaction amount of ${transaction.AMOUNT}.`);
@@ -54,7 +62,7 @@ const RequestConfirmation = () => {
           "respondent": { "BIC": transaction.RECEIVER_BIC },
           "disputeCategory": selectedCategory,
           "subject": selectedSubCategory,
-          "message": "Description of dispute for receiver, example: There was typo in creditor account, please replace it with account 12345678998076",
+          "message": "Description of dispute for receiver, example: There was a typo in the creditor account. Please replace it with account 12345678998076",
           "amount": {
             "currency": "JOD",
             "value": parseFloat(amount)
@@ -89,12 +97,8 @@ const RequestConfirmation = () => {
     }
   };
 
-  const handleYesButtonPress = () => {
-    navigation.navigate('SuccessRequest');
-  };
-
-  const handleNoButtonPress = () => {
-    navigation.navigate('Home');
+  const handleCancelButtonPress = () => {
+    navigation.navigate('MainHome');
   };
 
   return (
@@ -102,31 +106,31 @@ const RequestConfirmation = () => {
       <TextInput
         style={styles.input}
         value={transaction.SENDER_BIC}
-        editable={false}
+        editable={true} // Make this input editable
       />
       <TextInput
         style={styles.input}
         value={amount}
-        onChangeText={handleAmountChange}
-        placeholder="Enter amount"
-        keyboardType="numeric"
+        editable={false} // Disable editing for the amount input
+        placeholder="Amount (Disabled)"
       />
       <Picker
         selectedValue={selectedCategory}
         onValueChange={(itemValue) => setSelectedCategory(itemValue)}
         style={styles.picker}
+        enabled={false} // Disable Picker
       >
-        <Picker.Item label="Select Category" value="" />
+        <Picker.Item label="APNM" value="" />
         {categories.map((category, index) => (
           <Picker.Item key={index} label={category} value={category} />
         ))}
       </Picker>
       <Picker
         selectedValue={selectedSubCategory}
-        onValueChange={(itemValue) => setSelectedSubCategory(itemValue)}
         style={styles.picker}
+        enabled={false} // Disable Picker
       >
-        <Picker.Item label="Select Sub-Category" value="" />
+        <Picker.Item label="APMM" value="" />
         {subCategories.map((subCategory, index) => (
           <Picker.Item key={index} label={subCategory} value={subCategory} />
         ))}
@@ -135,8 +139,9 @@ const RequestConfirmation = () => {
         style={styles.message}
         multiline={true}
         placeholder="Enter message here..."
-        numberOfLines={4}
+        numberOfLines={4} // Adjust the number of lines as needed
       />
+
       <Text style={styles.label}>Date:</Text>
       <TextInput
         style={styles.input}
@@ -144,10 +149,10 @@ const RequestConfirmation = () => {
         editable={false}
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={registerDispute}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.mainColor }]} onPress={registerDispute}>
           <Text style={styles.buttonText}>Send</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={handleNoButtonPress}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={handleCancelButtonPress}>
           <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
@@ -182,7 +187,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: '100%',
     marginBottom: 16,
-    color: appColor.textColor,
     backgroundColor: appColor.mainColor,
     borderRadius: 8,
   },
@@ -211,9 +215,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: appColor.mainColor,
     color: appColor.textColor,
-    textAlignVertical: 'top',
-    height: 100,
+    textAlignVertical: 'top', // Ensures text starts from the top
+    height: 100, // Adjust height as needed
   },
 });
 
-export default RequestConfirmation;
+export default AccountProblems;

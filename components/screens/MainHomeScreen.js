@@ -10,11 +10,15 @@ const MainHomeScreen = () => {
     navigation.navigate('Home');
   };
 
+  const handleGoToAccountProblems = () => {
+    navigation.navigate('AccountProblems');
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcom Please chose what you whant to do</Text>
+      <Text style={styles.title}>Welcome, please choose what you want to do</Text>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
+        <TouchableOpacity
           style={[styles.button, { backgroundColor: '#28A745' }]} // Success Color
           onPress={handleGoToHomeScreen}
         >
