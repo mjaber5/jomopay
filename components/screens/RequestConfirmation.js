@@ -21,6 +21,8 @@ const RequestConfirmation = () => {
     const categoryIndex = categories.indexOf(selectedCategory);
     if (categoryIndex !== -1) {
       setSelectedSubCategory(subCategories[categoryIndex] || '');
+    } else {
+      setSelectedSubCategory('');
     }
   }, [selectedCategory]);
 
@@ -93,7 +95,7 @@ const RequestConfirmation = () => {
   };
 
   const handleNoButtonPress = () => {
-    navigation.navigate('Home');
+    navigation.navigate('HomeScreen');
   };
 
   return (
@@ -122,8 +124,8 @@ const RequestConfirmation = () => {
       </Picker>
       <Picker
         selectedValue={selectedSubCategory}
-        style={[styles.picker]}
-        enabled={false} // Disable the Picker
+        onValueChange={(itemValue) => setSelectedSubCategory(itemValue)}
+        style={styles.picker}
       >
         <Picker.Item label="Select Sub-Category" value="" />
         {subCategories.map((subCategory, index) => (
@@ -131,12 +133,11 @@ const RequestConfirmation = () => {
         ))}
       </Picker>
       <TextInput
-        style={styles.massage}
+        style={styles.message}
         multiline={true}
         placeholder="Enter message here..."
-        numberOfLines={4} // Adjust the number of lines as needed
+        numberOfLines={4}
       />
-
       <Text style={styles.label}>Date:</Text>
       <TextInput
         style={styles.input}
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
-    backgroundColor: appColor.lightBackgroundColor,
+    backgroundColor: appColor.backgroundColor,
   },
   label: {
     fontSize: 18,
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: '100%',
     marginBottom: 16,
-    color: appColor.darkTextColor,
+    color: appColor.textColor,
     backgroundColor: appColor.mainColor,
     borderRadius: 8,
   },
@@ -199,11 +200,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: appColor.lightTextColor,
+    color: appColor.textColor,
     fontSize: 18,
     fontWeight: 'bold',
   },
-  massage: {
+  message: {
     width: '100%',
     padding: 10,
     borderColor: '#ccc',
@@ -211,8 +212,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: appColor.mainColor,
     color: appColor.textColor,
-    textAlignVertical: 'top', // Ensures text starts from the top
-    height: 100, // Adjust height as needed
+    textAlignVertical: 'top',
+    height: 100,
   },
 });
 
