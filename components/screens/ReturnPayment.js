@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 const ReturnPayment = () => {
   const route = useRoute();
-  const { replayData = {} } = route.params || {}; // Provide a default value if params is undefined
+  const { replayData = {}, availableAmount = 0 } = route.params || {}; // Extract available amount
   const [amount, setAmount] = useState('');
   const navigation = useNavigation();
 
@@ -13,6 +13,14 @@ const ReturnPayment = () => {
   };
 
   const handleYesPress = async () => {
+    if (isNaN(amount) || amount <= 0 || amount > availableAmount) {
+      Alert.alert(
+        'Invalid Amount',
+        `Please enter a valid amount. It should be greater than 0 and less than or equal to ${availableAmount}.`
+      );
+      return;
+    }
+
     try {
       await returnMoney(amount, replayData);
       navigation.navigate('SuccessRequest');

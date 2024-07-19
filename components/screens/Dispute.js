@@ -29,7 +29,7 @@ console.log(cardData);
       },
     });
   };
-
+console.log(route);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.detailsContainer}>
@@ -56,13 +56,13 @@ console.log(cardData);
           style={[styles.button, { backgroundColor: '#007BFF' }]}
           onPress={handleReplay}
         >
-          <Text style={styles.buttonText}>Add Attachment</Text>
+          <Text style={styles.buttonText}>Replay</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]}
           onPress={() => {}}
         >
-          <Text style={styles.buttonText}>Reply</Text>
+          <Text style={styles.buttonText}>Read</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]}

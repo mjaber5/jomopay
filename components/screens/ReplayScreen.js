@@ -1,21 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation for navigation
+import { useNavigation, useRoute } from '@react-navigation/native'; // Import useNavigation and useRoute for navigation and route params
 import appColor from '../../util/app_colors';
 
-const ReplayScreen = ({ route }) => {
-  const { replayData } = route.params;
-  const navigation = useNavigation(); // Initialize navigation
+const ReplayScreen = () => {
+  const route = useRoute();
+  const navigation = useNavigation();
 
+  // Destructure replayData from route.params with a default empty object
+  const { replayData = {} } = route.params || {};
+console.log(route);
+  // Handle button presses
   const handleNoPress = async () => {
     try {
-       navigation.navigate('Home');
+      // Call the replayDispute function if needed
+      await replayDispute(replayData.id); // Assuming replayData has an id field
+      navigation.navigate('Home');
       console.log('Dispute replied with additional information.');
     } catch (error) {
       console.error('Error replying to dispute:', error);
     }
   };
-
+console.log(replayData)
   const handleYesPress = () => {
     navigation.navigate('ReturnPayment');
   };
@@ -26,42 +32,42 @@ const ReplayScreen = ({ route }) => {
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Alias / IBAN</Text>
-        <Text style={styles.detail}>{replayData.alias}</Text>
+        <Text style={styles.detail}>{replayData.alias || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Beneficiary Name</Text>
-        <Text style={styles.detail}>{replayData.beneficiaryName}</Text>
+        <Text style={styles.detail}>{replayData.beneficiaryName || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Amount</Text>
-        <Text style={styles.detail}>{replayData.amount}</Text>
+        <Text style={styles.detail}>{replayData.amount || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Type</Text>
-        <Text style={styles.detail}>{replayData.type}</Text>
+        <Text style={styles.detail}>{replayData.type || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Date</Text>
-        <Text style={styles.detail}>{replayData.date}</Text>
+        <Text style={styles.detail}>{replayData.date || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Return Amount</Text>
-        <Text style={styles.detail}>{replayData.returnAmount}</Text>
+        <Text style={styles.detail}>{replayData.returnAmount || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Reason (category)</Text>
-        <Text style={styles.detail}>{replayData.reason}</Text>
+        <Text style={styles.detail}>{replayData.reason || 'N/A'}</Text>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Sub-category</Text>
-        <Text style={styles.detail}>{replayData.subCategory}</Text>
+        <Text style={styles.detail}>{replayData.subCategory || 'N/A'}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -73,7 +79,7 @@ const ReplayScreen = ({ route }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#28A745' }]}
-          onPress={handleYesPress} 
+          onPress={handleYesPress}
         >
           <Text style={styles.buttonText}>Yes</Text>
         </TouchableOpacity>
@@ -82,19 +88,29 @@ const ReplayScreen = ({ route }) => {
   );
 };
 
-const replayDispute = async (replayData) => {
-  const response = await fetch(`http://141.147.32.152:11443/api/dmm/v1.0/disputes/${replayData}/reply`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Charset': 'UTF-8',
-      'Authorization': 'Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4',
-    },
-    body: JSON.stringify({
-      "message": "Add more information to dispute",
-    }),
-  });
-  return response.json(); 
+const replayDispute = async (replayDataId) => {
+  try {
+    const response = await fetch(`http://141.147.32.152:11443/api/dmm/v1.0/disputes/${replayDataId}/reply`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Charset': 'UTF-8',
+        'Authorization': 'Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4',
+      },
+      body: JSON.stringify({
+        "message": "Add more information to dispute",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error during API request:', error);
+    throw error; // Rethrow error to be caught in the handleNoPress function
+  }
 };
 
 const styles = StyleSheet.create({
