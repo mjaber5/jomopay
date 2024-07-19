@@ -1,268 +1,189 @@
-{
-  "transactions": [
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11862845",
-          "transaction_id": "FRALJO21AXXX11862845",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO21",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11862977",
-          "transaction_id": "FRALJO21AXXX11862977",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO22",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863033",
-          "transaction_id": "FRALJO21AXXX11863033",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO23",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863178",
-          "transaction_id": "FRALJO21AXXX11863178",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO24",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863326",
-          "transaction_id": "FRALJO21AXXX11863326",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO25",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863467",
-          "transaction_id": "FRALJO21AXXX11863467",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO26",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863587",
-          "transaction_id": "FRALJO21AXXX11863587",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO27",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863734",
-          "transaction_id": "FRALJO21AXXX11863734",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO28",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11863871",
-          "transaction_id": "FRALJO21AXXX11863871",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO29",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864009",
-          "transaction_id": "FRALJO21AXXX11864009",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO30",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864149",
-          "transaction_id": "FRALJO21AXXX11864149",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO31",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864289",
-          "transaction_id": "FRALJO21AXXX11864289",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO32",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864428",
-          "transaction_id": "FRALJO21AXXX11864428",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO33",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864572",
-          "transaction_id": "FRALJO21AXXX11864572",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO34",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864709",
-          "transaction_id": "FRALJO21AXXX11864709",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO35",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864850",
-          "transaction_id": "FRALJO21AXXX11864850",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO36",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11864991",
-          "transaction_id": "FRALJO21AXXX11864991",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO37",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865131",
-          "transaction_id": "FRALJO21AXXX11865131",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO38",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865272",
-          "transaction_id": "FRALJO21AXXX11865272",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO39",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865415",
-          "transaction_id": "FRALJO21AXXX11865415",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO40",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865561",
-          "transaction_id": "FRALJO21AXXX11865561",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO41",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865703",
-          "transaction_id": "FRALJO21AXXX11865703",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO42",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865846",
-          "transaction_id": "FRALJO21AXXX11865846",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO43",
-          "currency": "JOD",
-          "status": "Success"
-      },
-      {
-          "message_type": "pacs.008.001.08",
-          "end_to_end_id": "FRALJO21AXXX11865988",
-          "transaction_id": "FRALJO21AXXX11865988",
-          "amount": 21.00,
-          "value_date": "2024-07-19",
-          "debtor_account": "FRALJO27",
-          "creditor_account": "FRALJO44",
-          "currency": "JOD",
-          "status": "Success"
-      }
-  ]
-}
+[
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11852559",
+    "TRANS_ID": "FRALJO21AXXX11852559",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO21",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11852717",
+    "TRANS_ID": "FRALJO21AXXX11852717",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO22",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11852867",
+    "TRANS_ID": "FRALJO21AXXX11852867",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO23",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX1185316",
+    "TRANS_ID": "FRALJO21AXXX1185316",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO24",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11853160",
+    "TRANS_ID": "FRALJO21AXXX11853160",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO25",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11853320",
+    "TRANS_ID": "FRALJO21AXXX11853320",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO26",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11853461",
+    "TRANS_ID": "FRALJO21AXXX11853461",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO27",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11853605",
+    "TRANS_ID": "FRALJO21AXXX11853605",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO28",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11853747",
+    "TRANS_ID": "FRALJO21AXXX11853747",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO29",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11853903",
+    "TRANS_ID": "FRALJO21AXXX11853903",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO30",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX1185447",
+    "TRANS_ID": "FRALJO21AXXX1185447",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO31",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11854205",
+    "TRANS_ID": "FRALJO21AXXX11854205",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO32",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11854347",
+    "TRANS_ID": "FRALJO21AXXX11854347",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO33",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11854490",
+    "TRANS_ID": "FRALJO21AXXX11854490",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO34",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11854632",
+    "TRANS_ID": "FRALJO21AXXX11854632",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO35",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11854777",
+    "TRANS_ID": "FRALJO21AXXX11854777",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO36",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  },
+  {
+    "MSG_TYPE": "pacs.008.001.08",
+    "MESSAGE_ID": "FRALJO21AXXX11854919",
+    "TRANS_ID": "FRALJO21AXXX11854919",
+    "AMOUNT": 64.00,
+    "VALUE_DATE": "2024-07-19",
+    "SENDER_BIC": "FRALJO27",
+    "RECEIVER_BIC": "FRALJO37",
+    "CURR_CODE": "JOD",
+    "RESULT_DESCRIPTION": "Success"
+  }
+]

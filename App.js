@@ -13,7 +13,7 @@ import Dispute from './components/screens/Dispute'; // Import the new Dispute sc
 import MainHomeScreen from './components/screens/MainHomeScreen'; // Import MainHomeScreen
 import appColor from './util/app_colors';
 import ReplayScreen from './components/screens/ReplayScreen';
-
+import ReturnPayment from './components/screens/ReturnPayment'
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -79,6 +79,11 @@ export default function App() {
           name="ReplayScreen" 
           component={ReplayScreen} 
           options={{ title: 'Replay' }} 
+        />
+        <Stack.Screen 
+          name="ReturnPayment" 
+          component={ReturnPayment} 
+          options={{ title: 'Return Payment'}} 
         />
       </Stack.Navigator>
     </NavigationContainer>

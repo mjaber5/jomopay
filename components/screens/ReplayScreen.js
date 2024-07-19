@@ -1,9 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation for navigation
 import appColor from '../../util/app_colors';
 
 const ReplayScreen = ({ route }) => {
   const { replayData } = route.params;
+  const navigation = useNavigation(); // Initialize navigation
+
+  const handleNoPress = async () => {
+    try {
+       navigation.navigate('Home');
+      console.log('Dispute replied with additional information.');
+    } catch (error) {
+      console.error('Error replying to dispute:', error);
+    }
+  };
+
+  const handleYesPress = () => {
+    navigation.navigate('ReturnPayment');
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -52,19 +67,34 @@ const ReplayScreen = ({ route }) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#DC3545' }]}
-          onPress={() => {}}
+          onPress={handleNoPress} // Set the handler for "No"
         >
           <Text style={styles.buttonText}>No</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#28A745' }]}
-          onPress={() => {}}
+          onPress={handleYesPress} 
         >
           <Text style={styles.buttonText}>Yes</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
+};
+
+const replayDispute = async (replayData) => {
+  const response = await fetch(`http://141.147.32.152:11443/api/dmm/v1.0/disputes/${replayData}/reply`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Charset': 'UTF-8',
+      'Authorization': 'Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4',
+    },
+    body: JSON.stringify({
+      "message": "Add more information to dispute",
+    }),
+  });
+  return response.json(); 
 };
 
 const styles = StyleSheet.create({
@@ -89,7 +119,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#ccc',
-    color:appColor.darkTextColor,
+    color: appColor.darkTextColor,
     borderRadius: 5,
     padding: 10,
   },

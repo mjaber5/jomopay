@@ -16,7 +16,6 @@ const RequestConfirmation = () => {
   const categories = ['TECH', 'WRBN', 'APNM'];
   const subCategories = ['ACNS', 'MSPY', 'APMM'];
 
-  // Automatically select the corresponding sub-category based on the selected category
   useEffect(() => {
     const categoryIndex = categories.indexOf(selectedCategory);
     if (categoryIndex !== -1) {
