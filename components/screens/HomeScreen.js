@@ -17,6 +17,7 @@ export default function HomeScreen() {
       <Text style={styles.cardTitle}>{item.MESSAGE_ID}</Text>
       <Text>Amount: {item.AMOUNT}</Text>
       <Text>Value Date: {item.VALUE_DATE}</Text>
+      <Text>Receiver: {item.RECEIVER_BIC}</Text>
     </TouchableOpacity>
   );
 

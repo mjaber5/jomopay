@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import appColor from '../../util/app_colors';
-import HomeScreen from './HomeScreen';
+
 
 const RequestConfirmation = () => {
   const navigation = useNavigation();
@@ -14,8 +14,11 @@ const RequestConfirmation = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
 
-  const categories = ['Technical Issues TECH', 'Wrong Beneficiary WRBN', 'Alias/Phone Number Misassignment'];
-  const subCategories = ['Account was not credited', 'Misdirected payments', 'Alias mismatch with customer'];
+  
+
+
+  const categories = ['TECH', 'WRBN', 'APNM'];
+  const subCategories = ['ACNS', 'MSPY', 'APMM'];
 
   const handleAmountChange = (input) => {
     let newAmount = parseFloat(input);
@@ -32,8 +35,60 @@ const RequestConfirmation = () => {
     setAmount(newAmount);
   };
 
+  const registerDispute = async () => {
+    try {
+      const response = await fetch('http://141.147.32.152:11443/api/dmm/v1.0/disputes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Charset': 'UTF-8',
+          "Authorization": "Basic RlJBTEpPMjdBWFhYOjEyMzQ1Njc4",
+        },
+        body: JSON.stringify({
+          "reference": new Date().getTime().toString(),
+          "respondent": { "BIC": transaction.RECEIVER_BIC },
+          "disputeCategory": selectedCategory,
+          "subject": selectedSubCategory,
+          "message": "Description of dispute for receiver, example: There was typo in creditor account, please replace it with account 12345678998076",
+          "amount": {
+            "currency": "JOD",
+            "value": parseFloat(amount)
+          },
+          "originalPayment": {
+            "messageId": transaction.MESSAGE_ID,
+            "transactionId": transaction.TRANS_ID,
+            "valueDate": transaction.VALUE_DATE,
+            "orderingInstitution": { "BIC": transaction.SENDER_BIC }
+          }
+        })
+      });
+  
+      const responseText = await response.text();
+      console.log('Raw response text:', responseText);
+  
+      if (!response.ok) {
+        console.error('Error status code:', response.status);
+        console.error('Error status text:', response.statusText);
+        console.error('Error response body:', responseText);
+        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+      }
+  
+      const responseData = responseText ? JSON.parse(responseText) : {};
+      console.log('Dispute registered successfully:', responseData);
+      Alert.alert('Success', 'Dispute registered successfully');
+      navigation.navigate('NotificationScreen');
+  
+    } catch (error) {
+      console.error('Error registering dispute:', error.message);
+      Alert.alert('Error', `Failed to register dispute: ${error.message}`);
+    }
+  };
+  
+
+
   const handleYesButtonPress = () => {
     navigation.navigate('WaitFewTime');
+    registerDispute();
   };
 
   const handleNoButtonPress = () => {
