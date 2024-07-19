@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import appColor from '../../util/app_colors';
-import { useState, useEffect } from 'react';
 
-const NotificationScreen = () => {
+const NotificationScreen = ({ navigation }) => {
   const [disputes, setDisputes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const requestOptions = {
@@ -16,30 +18,41 @@ const NotificationScreen = () => {
     fetch("http://141.147.32.152:11443/api/dmm/v1.0/disputes", requestOptions)
       .then(response => response.json())
       .then(data => {
-        setDisputes(data.disputes || []); 
-        console.log(data);
+        setDisputes(data.disputes || []);
+        setIsLoading(false);
+        setError("");
       })
       .catch(error => {
         console.error('Error fetching disputes:', error);
+        setIsLoading(false);
+        setError("Failed to fetch disputes.");
       });
   }, []);
-  const renderDisputeItem = ({ item }) => (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>Reference: {item.reference}</Text>
-      <Text style={styles.itemText}>Category: {item.disputeCategory}</Text>
-      <Text style={styles.itemText}>Subject: {item.subject}</Text>
-      <Text style={styles.itemText}>Amount: {item.amount.value} {item.amount.currency}</Text>
-      <Text style={styles.itemText}>Status: {item.status}</Text>
-    </View>
+
+  const renderCardItem = ({ item }) => (
+    <TouchableOpacity 
+      style={styles.card}
+      onPress={() => navigation.navigate('Dispute', { cardData: item })}
+    >
+      <Text style={styles.cardTitle}>Category: {item.disputeCategory}</Text>
+      <Text style={styles.cardTitle}>Subject: {item.subject}</Text>
+      <Text style={styles.cardTitle}>Amount: {item.amount.value} {item.amount.currency}</Text>
+    </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={disputes}
-        renderItem={renderDisputeItem}
-        keyExtractor={item => item.reference} // Ensure you have a unique key for each item
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" color={appColor.mainColor} />
+      ) : (
+        <FlatList
+          data={disputes}
+          renderItem={renderCardItem}
+          keyExtractor={(item) => item.reference}
+          contentContainerStyle={styles.cardContainer}
+        />
+      )}
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
   );
 };
@@ -48,15 +61,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: appColor.backgroundColor,
+    padding: 20,
   },
-  itemContainer: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+  cardContainer: {
+    paddingVertical: 20,
   },
-  itemText: {
+  card: {
+    backgroundColor: appColor.mainColor,
+    padding: 20,
+    marginBottom: 10,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  cardTitle: {
     fontSize: 18,
     color: appColor.textColor,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 

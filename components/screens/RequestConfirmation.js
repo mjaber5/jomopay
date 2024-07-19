@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -15,6 +15,14 @@ const RequestConfirmation = () => {
 
   const categories = ['TECH', 'WRBN', 'APNM'];
   const subCategories = ['ACNS', 'MSPY', 'APMM'];
+
+  // Automatically select the corresponding sub-category based on the selected category
+  useEffect(() => {
+    const categoryIndex = categories.indexOf(selectedCategory);
+    if (categoryIndex !== -1) {
+      setSelectedSubCategory(subCategories[categoryIndex] || '');
+    }
+  }, [selectedCategory]);
 
   const handleAmountChange = (input) => {
     let newAmount = parseFloat(input);
@@ -81,8 +89,7 @@ const RequestConfirmation = () => {
   };
 
   const handleYesButtonPress = () => {
-    navigation.navigate('WaitFewTime');
-    registerDispute();
+    navigation.navigate('SuccessRequest');
   };
 
   const handleNoButtonPress = () => {
@@ -115,14 +122,20 @@ const RequestConfirmation = () => {
       </Picker>
       <Picker
         selectedValue={selectedSubCategory}
-        onValueChange={(itemValue) => setSelectedSubCategory(itemValue)}
-        style={styles.picker}
+        style={[styles.picker]}
+        enabled={false} // Disable the Picker
       >
         <Picker.Item label="Select Sub-Category" value="" />
         {subCategories.map((subCategory, index) => (
           <Picker.Item key={index} label={subCategory} value={subCategory} />
         ))}
       </Picker>
+      <TextInput
+        style={styles.massage}
+        multiline={true}
+        placeholder="Enter message here..."
+        numberOfLines={4} // Adjust the number of lines as needed
+      />
 
       <Text style={styles.label}>Date:</Text>
       <TextInput
@@ -131,11 +144,11 @@ const RequestConfirmation = () => {
         editable={false}
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={handleYesButtonPress}>
-          <Text style={styles.buttonText}>Yes</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={registerDispute}>
+          <Text style={styles.buttonText}>Send</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, { backgroundColor: appColor.secondBackgroundColor }]} onPress={handleNoButtonPress}>
-          <Text style={styles.buttonText}>No</Text>
+          <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -189,6 +202,17 @@ const styles = StyleSheet.create({
     color: appColor.lightTextColor,
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  massage: {
+    width: '100%',
+    padding: 10,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: appColor.mainColor,
+    color: appColor.textColor,
+    textAlignVertical: 'top', // Ensures text starts from the top
+    height: 100, // Adjust height as needed
   },
 });
 
