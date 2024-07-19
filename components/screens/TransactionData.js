@@ -20,8 +20,8 @@ export default function TransactionData({ route }) {
   const millisecondsInADay = 1000 * 60 * 60 * 24;
   const daysDifference = Math.floor((currentDate - transactionDate) / millisecondsInADay);
 
-  // Disable the button if transaction is older than 6 days
-  const isButtonDisabled = daysDifference >= 6;
+  // Determine if the button should be disabled
+  const isButtonDisabled = daysDifference >= 6 || transaction.isUploaded;
 
   const handleOpenDispute = () => {
     if (!isButtonDisabled) {

@@ -33,6 +33,7 @@ const NotificationScreen = ({ navigation }) => {
     <TouchableOpacity 
       style={styles.card}
       onPress={() => navigation.navigate('Dispute', { cardData: item })}
+      disabled={item.isUploaded} // Disable the card if the dispute is already uploaded
     >
       <Text style={styles.cardTitle}>Category: {item.disputeCategory}</Text>
       <Text style={styles.cardTitle}>Subject: {item.subject}</Text>
