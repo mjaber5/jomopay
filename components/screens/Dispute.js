@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import appColor from '../../util/app_colors';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
-const Dispute = ({ route, navigation }) => {
-  const { cardData } = route.params;
+const Dispute = () => {
+  const route = useRoute();
+  const navigation = useNavigation();
+
+  // Destructure cardData and transaction from route.params with default empty objects
+  const { cardData = {}} = route.params || {};
+
+  // Ensure VALUE_DATE is defined in cardData
+  const valueDate = cardData.valueDate || 'N/A';
+console.log(cardData);
+  // Set initial amount state, default to empty string if transaction.AMOUNT is undefined
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.detailsContainer}>
         <Text style={styles.detailLabel}>Category:</Text>
-        <Text style={styles.detail}>{cardData.disputeCategory}</Text>
+        <Text style={styles.detail}>{cardData.disputeCategory || 'N/A'}</Text>
         <Text style={styles.detailLabel}>Subject:</Text>
-        <Text style={styles.detail}>{cardData.subject}</Text>
+        <Text style={styles.detail}>{cardData.subject || 'N/A'}</Text>
         <Text style={styles.detailLabel}>Amount:</Text>
-        <Text style={styles.detail}>{cardData.amount.value} {cardData.amount.currency}</Text>
+        <Text style={styles.detail}>{cardData.amount ? `${cardData.amount.value} ${cardData.amount.currency}` : 'N/A'}</Text>
         <Text style={styles.detailLabel}>Status:</Text>
-        <Text style={styles.detail}>{cardData.status}</Text>
+        <Text style={styles.detail}>{cardData.status || 'N/A'}</Text>
+        <Text style={styles.detailLabel}>Value Date:</Text>
+        <Text style={styles.detail}>{valueDate}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -31,7 +43,7 @@ const Dispute = ({ route, navigation }) => {
             // Add Attachment functionality
           }}
         >
-          <Text style={styles.buttonText}>Replay</Text>
+          <Text style={styles.buttonText}>Add Attachment</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
@@ -39,12 +51,12 @@ const Dispute = ({ route, navigation }) => {
             // Reply functionality
           }}
         >
-          <Text style={styles.buttonText}>Read</Text>
+          <Text style={styles.buttonText}>Reply</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#007BFF' }]} // Primary Color
           onPress={() => {
-            // Reply functionality
+            // Assign functionality
           }}
         >
           <Text style={styles.buttonText}>Assign</Text>
@@ -59,13 +71,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     backgroundColor: appColor.mainColor,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: appColor.textColor,
-    marginBottom: 20,
-    textAlign: 'center',
   },
   detailsContainer: {
     marginBottom: 30,
