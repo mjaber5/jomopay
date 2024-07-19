@@ -95,7 +95,7 @@ const RequestConfirmation = () => {
   };
 
   const handleNoButtonPress = () => {
-    navigation.navigate('HomeScreen');
+    navigation.navigate('Home');
   };
 
   return (

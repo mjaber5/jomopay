@@ -7,10 +7,28 @@ export default function TransactionData({ route }) {
   const { transaction } = route.params;
   const navigation = useNavigation();
 
+  // Convert transaction date to Date object
+  const getTransactionDate = (dateString) => {
+    // Assuming dateString format is 'YYYY-MM-DD' (ISO format)
+    return new Date(dateString);
+  };
+
+  const transactionDate = getTransactionDate(transaction.VALUE_DATE);
+  const currentDate = new Date();
+
+  // Calculate the number of days between the two dates
+  const millisecondsInADay = 1000 * 60 * 60 * 24;
+  const daysDifference = Math.floor((currentDate - transactionDate) / millisecondsInADay);
+
+  // Disable the button if transaction is older than 6 days
+  const isButtonDisabled = daysDifference >= 6;
+
   const handleOpenDispute = () => {
-    navigation.navigate('RequestConfirmation', {
-      transaction: transaction,
-    });
+    if (!isButtonDisabled) {
+      navigation.navigate('RequestConfirmation', {
+        transaction: transaction,
+      });
+    }
   };
 
   return (
@@ -38,8 +56,12 @@ export default function TransactionData({ route }) {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, styles.openDisputeButton]} onPress={handleOpenDispute}>
-          <Text style={styles.buttonText}>Open dispute</Text>
+        <TouchableOpacity
+          style={[styles.button, styles.openDisputeButton, isButtonDisabled && styles.buttonDisabled]}
+          onPress={handleOpenDispute}
+          disabled={isButtonDisabled}
+        >
+          <Text style={[styles.buttonText, isButtonDisabled && styles.buttonTextDisabled]}>Open dispute</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -86,9 +108,15 @@ const styles = StyleSheet.create({
   openDisputeButton: {
     backgroundColor: appColor.secondBackgroundColor,
   },
+  buttonDisabled: {
+    backgroundColor: '#ccc', // Light gray color to indicate disabled state
+  },
   buttonText: {
     color: appColor.lightTextColor,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  buttonTextDisabled: {
+    color: '#888', // Light gray color for disabled text
   },
 });
